@@ -7,7 +7,7 @@ pipeline {
                 echo 'Any checking...'
             }
         }
-        stage('Build') {
+        stage('Build1') {
             agent {
                 node {
                 label 'Linux'
@@ -19,7 +19,7 @@ pipeline {
                 sh 'make'
             }
         }
-        stage('Test') {
+        stage('Test1') {
             agent {
                 node {
                 label 'Linux'
@@ -30,7 +30,7 @@ pipeline {
                 echo 'Linux testing...'
             }
         }
-        stage('Build') {
+        stage('Build2') {
             agent {
                 node {
                 label 'Kuber'
@@ -41,7 +41,7 @@ pipeline {
                 echo 'Kuber building...'
             }
         }
-        stage('Test') {
+        stage('Test2') {
             agent {
                 node {
                 label 'Kuber'
