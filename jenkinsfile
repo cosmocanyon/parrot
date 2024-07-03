@@ -1,0 +1,61 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Check') {
+            steps {
+                echo 'Any checking...'
+            }
+        }
+        stage('Build') {
+            agent {
+                node {
+                label 'Linux'
+                }
+	        }
+
+            steps {
+                echo 'Linux building...'
+                sh 'make'
+            }
+        }
+        stage('Test') {
+            agent {
+                node {
+                label 'Linux'
+                }
+	        }
+
+            steps {
+                echo 'Linux testing...'
+            }
+        }
+        stage('Build') {
+            agent {
+                node {
+                label 'Kuber'
+                }
+	        }
+
+            steps {
+                echo 'Kuber building...'
+            }
+        }
+        stage('Test') {
+            agent {
+                node {
+                label 'Kuber'
+                }
+	        }
+
+            steps {
+                echo 'Kuber testing...'
+            }
+        }
+        stage('Release') {
+            steps {
+                echo 'Releasing...'
+            }
+        }
+    }
+}
