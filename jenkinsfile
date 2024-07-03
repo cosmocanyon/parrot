@@ -18,7 +18,7 @@ pipeline {
                 echo 'Linux building...'
                 sh '''
                     g++ -c main.cpp
-                    g++ -o main main.o
+                    g++ -o main.sh main.o
                 '''
             }
         }
@@ -31,7 +31,7 @@ pipeline {
 
             steps {
                 echo 'Linux testing...'
-                sh 'main Ciao a tutti'
+                sh './main.sh Ciao a tutti'
             }
         }
         stage('Build2') {
