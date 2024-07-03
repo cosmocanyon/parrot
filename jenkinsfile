@@ -16,7 +16,10 @@ pipeline {
 
             steps {
                 echo 'Linux building...'
-                sh 'make'
+                sh '''
+                    g++ -c main.cpp
+                    g++ -o main main.o
+                '''
             }
         }
         stage('Test1') {
