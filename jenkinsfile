@@ -10,7 +10,7 @@ pipeline {
         stage('Build1') {
             agent {
                 node {
-                label 'Linux'
+                label 'Master'
                 }
 	        }
 
@@ -25,7 +25,7 @@ pipeline {
         stage('Test1') {
             agent {
                 node {
-                label 'Linux'
+                label 'Master'
                 }
 	        }
 
@@ -37,7 +37,7 @@ pipeline {
         stage('Build2') {
             agent {
                 node {
-                label 'Kuber'
+                label 'Master'
                 }
 	        }
 
@@ -48,7 +48,7 @@ pipeline {
         stage('Test2') {
             agent {
                 node {
-                label 'Kuber'
+                label 'Master'
                 }
 	        }
 
