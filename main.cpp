@@ -2,7 +2,7 @@
 
 int main(int argc, char** argv)
 {
-    std::cout << "test build\n";
+    std::cout << "main build\n";
     std::cout << "argumengts n: " << argc << "\n";
     for(int i = 0; i < argc; i++) {
         std::cout << argv[i] << "\n";
