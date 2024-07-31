@@ -10,7 +10,7 @@ pipeline {
         stage('Build1') {
             agent {
                 node {
-                label 'Linux'
+                label 'Master'
                 }
 	        }
 
