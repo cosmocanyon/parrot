@@ -8,12 +8,6 @@ pipeline {
             }
         }
         stage('Build') {
-            agent {
-                node {
-                label 'Master'
-                }
-	        }
-
             steps {
                 echo 'building...'
                 sh '''
@@ -23,12 +17,6 @@ pipeline {
             }
         }
         stage('Test') {
-            agent {
-                node {
-                label 'Master'
-                }
-	        }
-
             steps {
                 echo 'testing...'
                 sh './main.sh Ciao a tutti'
