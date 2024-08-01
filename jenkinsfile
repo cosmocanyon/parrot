@@ -7,19 +7,53 @@ pipeline {
                 echo 'Any checking...'
             }
         }
-        stage('Build') {
+        stage('Build1') {
+            agent {
+                node {
+                label 'Master'
+                }
+	        }
+
             steps {
-                echo 'building...'
+                echo 'Linux building...'
                 sh '''
                     g++ -c main.cpp
                     g++ -o main.sh main.o
                 '''
             }
         }
-        stage('Test') {
+        stage('Test1') {
+            agent {
+                node {
+                label 'Master'
+                }
+	        }
+
             steps {
-                echo 'testing...'
+                echo 'Linux testing...'
                 sh './main.sh Ciao a tutti'
+            }
+        }
+        stage('Build2') {
+            agent {
+                node {
+                label 'Master'
+                }
+	        }
+
+            steps {
+                echo 'Kuber building...'
+            }
+        }
+        stage('Test2') {
+            agent {
+                node {
+                label 'Master'
+                }
+	        }
+
+            steps {
+                echo 'Kuber testing...'
             }
         }
         stage('Release') {
