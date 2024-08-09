@@ -38,37 +38,19 @@ pipeline {
 
     post {  
         success {            
-            mail bcc: '', 
-                body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL build: ${env.BUILD_URL}", 
-                cc: '', 
-                charset: 'UTF-8', 
-                from: '', 
-                mimeType: 'text/html', 
-                replyTo: '', 
-                subject: "SUCCESS: Project name -> ${env.JOB_NAME}", 
-                to: "$EMAIL_TO2";  
+            emailext body: 'Check console output at $BUILD_URL to view the results. \n\n ${CHANGES} \n\n -------------------------------------------------- \n${BUILD_LOG, maxLines=100, escapeHtml=false}', 
+            to: "${EMAIL_TO2}", 
+            subject: 'Build succeded in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER'
         }  
         failure {  
-            mail bcc: '', 
-                body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL build: ${env.BUILD_URL}", 
-                cc: '', 
-                charset: 'UTF-8', 
-                from: '', 
-                mimeType: 'text/html', 
-                replyTo: '', 
-                subject: "FAILED: Project name -> ${env.JOB_NAME}", 
-                to: "$EMAIL_TO";  
+            emailext body: 'Check console output at $BUILD_URL to view the results. \n\n ${CHANGES} \n\n -------------------------------------------------- \n${BUILD_LOG, maxLines=100, escapeHtml=false}', 
+                to: "${EMAIL_TO2}", 
+                subject: 'Build failed in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER'
         }
         aborted {
-            mail bcc: '', 
-                body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL build: ${env.BUILD_URL}", 
-                cc: '', 
-                charset: 'UTF-8', 
-                from: '', 
-                mimeType: 'text/html', 
-                replyTo: '', 
-                subject: "ABORTED: Project name -> ${env.JOB_NAME}", 
-                to: "$EMAIL_TO";  
+            emailext body: 'Check console output at $BUILD_URL to view the results. \n\n ${CHANGES} \n\n -------------------------------------------------- \n${BUILD_LOG, maxLines=100, escapeHtml=false}', 
+                to: "${EMAIL_TO2}", 
+                subject: 'Build aborted in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER'
         }  
         //unstable {}  
         //changed {}  
