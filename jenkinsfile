@@ -7,6 +7,7 @@ pipeline {
                 echo 'Any checking...'
             }
         }
+
         stage('Build') {
             steps {
                 echo 'building...'
@@ -16,12 +17,14 @@ pipeline {
                 '''
             }
         }
+
         stage('Test') {
             steps {
                 echo 'testing...'
                 sh './main.sh Ciao a tutti'
             }
         }
+        
         stage('Release') {
             steps {
                 echo 'Releasing...'
