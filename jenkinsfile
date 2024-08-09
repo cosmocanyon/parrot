@@ -37,35 +37,24 @@ pipeline {
     }
 
     post {  
-        always {
+        success {
             emailext body: 'Check console output at $BUILD_URL to view the results. \n\n ${CHANGES} \n\n -------------------------------------------------- \n${BUILD_LOG, maxLines=100, escapeHtml=false}', 
             //recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], 
             subject: 'Build succeded in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER',
             to: '$EMAIL_TO'
         }
-//        success {
-/*                        
+        failure {
             emailext body: 'Check console output at $BUILD_URL to view the results. \n\n ${CHANGES} \n\n -------------------------------------------------- \n${BUILD_LOG, maxLines=100, escapeHtml=false}', 
-            to: "${EMAIL_TO2}", 
-            subject: 'Build succeded in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER'
-*/
-            //mail bcc: '', body: 'test', cc: '', from: '', replyTo: '', subject: 'test', to: 'paolo.vismara@certimeter.it'
-//       }  
-
-//        failure {  
-/*
+            //recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], 
+            subject: 'Build failed in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER',
+            to: '$EMAIL_TO'
+        }
+        aborted {
             emailext body: 'Check console output at $BUILD_URL to view the results. \n\n ${CHANGES} \n\n -------------------------------------------------- \n${BUILD_LOG, maxLines=100, escapeHtml=false}', 
-                to: "${EMAIL_TO2}", 
-                subject: 'Build failed in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER'
-*/
-//        }
-//        aborted {
-/*
-            emailext body: 'Check console output at $BUILD_URL to view the results. \n\n ${CHANGES} \n\n -------------------------------------------------- \n${BUILD_LOG, maxLines=100, escapeHtml=false}', 
-                to: "${EMAIL_TO2}", 
-                subject: 'Build aborted in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER'
-*/
-//        }  
+            //recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], 
+            subject: 'Build aborted in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER',
+            to: '$EMAIL_TO'
+        }  
         //unstable {}  
         //changed {}  
      }  
