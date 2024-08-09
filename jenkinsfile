@@ -7,15 +7,7 @@ pipeline {
                 echo 'Any checking...'
             }
         }
-<<<<<<< HEAD
-        stage('Build1') {
-            agent {
-                node {
-                label 'Master'
-                }
-	        }
 
-=======
         stage('Build') {
 >>>>>>> dev
             steps {
@@ -26,15 +18,7 @@ pipeline {
                 '''
             }
         }
-<<<<<<< HEAD
-        stage('Test1') {
-            agent {
-                node {
-                label 'Master'
-                }
-	        }
 
-=======
         stage('Test') {
 >>>>>>> dev
             steps {
@@ -42,31 +26,7 @@ pipeline {
                 sh './main.sh Ciao a tutti'
             }
         }
-<<<<<<< HEAD
-        stage('Build2') {
-            agent {
-                node {
-                label 'Master'
-                }
-	        }
-
-            steps {
-                echo 'Kuber building...'
-            }
-        }
-        stage('Test2') {
-            agent {
-                node {
-                label 'Master'
-                }
-	        }
-
-            steps {
-                echo 'Kuber testing...'
-            }
-        }
-=======
->>>>>>> dev
+        
         stage('Release') {
             steps {
                 echo 'Releasing...'
