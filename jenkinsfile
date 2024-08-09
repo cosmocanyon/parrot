@@ -1,10 +1,10 @@
 pipeline {
     agent any
-/*
+
     environment {
-      
+        EMAIL_TO2 = 'paolo.vismara@certimeter.it'
     }
-*/
+
     stages {
         stage('Check') {
             steps {
@@ -46,7 +46,7 @@ pipeline {
                 mimeType: 'text/html', 
                 replyTo: '', 
                 subject: "SUCCESS: Project name -> ${env.JOB_NAME}", 
-                to: "$EMAIL_TO";  
+                to: "$EMAIL_TO2";  
         }  
         failure {  
             mail bcc: '', 
