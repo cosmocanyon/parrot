@@ -7,6 +7,7 @@ pipeline {
                 echo 'Any checking...'
             }
         }
+<<<<<<< HEAD
         stage('Build1') {
             agent {
                 node {
@@ -14,14 +15,18 @@ pipeline {
                 }
 	        }
 
+=======
+        stage('Build') {
+>>>>>>> dev
             steps {
-                echo 'Linux building...'
+                echo 'building...'
                 sh '''
                     g++ -c main.cpp
                     g++ -o main.sh main.o
                 '''
             }
         }
+<<<<<<< HEAD
         stage('Test1') {
             agent {
                 node {
@@ -29,11 +34,15 @@ pipeline {
                 }
 	        }
 
+=======
+        stage('Test') {
+>>>>>>> dev
             steps {
-                echo 'Linux testing...'
+                echo 'testing...'
                 sh './main.sh Ciao a tutti'
             }
         }
+<<<<<<< HEAD
         stage('Build2') {
             agent {
                 node {
@@ -56,6 +65,8 @@ pipeline {
                 echo 'Kuber testing...'
             }
         }
+=======
+>>>>>>> dev
         stage('Release') {
             steps {
                 echo 'Releasing...'
