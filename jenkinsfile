@@ -43,7 +43,7 @@ pipeline {
             to: "${EMAIL_TO2}", 
             subject: 'Build succeded in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER'
 */
-            emailext body: 'build failed body', subject: 'build failed', to: 'paolo.vismara@certimeter.it'
+            mail bcc: '', body: 'test', cc: '', from: '', replyTo: '', subject: 'test', to: 'paolo.vismara@certimeter.it'
         }  
 /*
         failure {  
