@@ -36,9 +36,24 @@ pipeline {
         }
     }
 
-    post {  
-        always {
-            emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+    post {
+        success {
+            emailext body: 'Check console output at $BUILD_URL to view the results. \n\n ${CHANGES} \n\n -------------------------------------------------- \n${BUILD_LOG, maxLines=100, escapeHtml=false}', 
+            recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], 
+            subject: 'Build succeded in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER',
+            to '$EMAIL_TO'
+        }  
+        failure {  
+            emailext body: 'Check console output at $BUILD_URL to view the results. \n\n ${CHANGES} \n\n -------------------------------------------------- \n${BUILD_LOG, maxLines=100, escapeHtml=false}', 
+            recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], 
+            subject: 'Build failed in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER',
+            to '$EMAIL_TO'
+        }
+        aborted {
+            emailext body: 'Check console output at $BUILD_URL to view the results. \n\n ${CHANGES} \n\n -------------------------------------------------- \n${BUILD_LOG, maxLines=100, escapeHtml=false}', 
+            recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], 
+            subject: 'Build aborted in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER',
+            to '$EMAIL_TO'
         }  
      }  
 }
