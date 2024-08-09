@@ -9,7 +9,6 @@ pipeline {
         }
 
         stage('Build') {
->>>>>>> dev
             steps {
                 echo 'building...'
                 sh '''
@@ -20,7 +19,6 @@ pipeline {
         }
 
         stage('Test') {
->>>>>>> dev
             steps {
                 echo 'testing...'
                 sh './main.sh Ciao a tutti'
