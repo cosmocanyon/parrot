@@ -1,10 +1,10 @@
 pipeline {
     agent any
-
+/*
     environment {
       
     }
-
+*/
     stages {
         stage('Check') {
             steps {
@@ -38,8 +38,7 @@ pipeline {
 
     post {  
         success {            
-            mail 
-                bcc: '', 
+            mail bcc: '', 
                 body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL build: ${env.BUILD_URL}", 
                 cc: '', 
                 charset: 'UTF-8', 
@@ -50,8 +49,7 @@ pipeline {
                 to: "${EMAIL_TO}";  
         }  
         failure {  
-            mail 
-                bcc: '', 
+            mail bcc: '', 
                 body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL build: ${env.BUILD_URL}", 
                 cc: '', 
                 charset: 'UTF-8', 
@@ -62,8 +60,7 @@ pipeline {
                 to: "$EMAIL_TO";  
         }
         aborted {
-            mail
-                bcc: '', 
+            mail bcc: '', 
                 body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL build: ${env.BUILD_URL}", 
                 cc: '', 
                 charset: 'UTF-8', 
@@ -73,7 +70,7 @@ pipeline {
                 subject: "ABORTED: Project name -> ${env.JOB_NAME}", 
                 to: "$EMAIL_TO";  
         }  
-        unstable {}  
-        changed {}  
+        //unstable {}  
+        //changed {}  
      }  
 }
