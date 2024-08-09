@@ -46,7 +46,7 @@ pipeline {
                 mimeType: 'text/html', 
                 replyTo: '', 
                 subject: "SUCCESS: Project name -> ${env.JOB_NAME}", 
-                to: $EMAIL_TO;  
+                to: "$EMAIL_TO";  
         }  
         failure {  
             mail bcc: '', 
