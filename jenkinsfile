@@ -39,7 +39,7 @@ pipeline {
     post {  
         success {}  
         failure {  
-             mail 
+            mail 
                 bcc: '', 
                 body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL build: ${env.BUILD_URL}", 
                 cc: '', 
@@ -47,7 +47,19 @@ pipeline {
                 from: '', 
                 mimeType: 'text/html', 
                 replyTo: '', 
-                subject: "ERROR CI: Project name -> ${env.JOB_NAME}", 
+                subject: "FAILED: Project name -> ${env.JOB_NAME}", 
+                to: "$EMAIL_TO";  
+        }
+        aborted {
+            mail
+                bcc: '', 
+                body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL build: ${env.BUILD_URL}", 
+                cc: '', 
+                charset: 'UTF-8', 
+                from: '', 
+                mimeType: 'text/html', 
+                replyTo: '', 
+                subject: "ABORTED: Project name -> ${env.JOB_NAME}", 
                 to: "$EMAIL_TO";  
         }  
         unstable {}  
